@@ -1,0 +1,19 @@
+BinaryTreeNode<int> *findLCA(BinaryTreeNode<int> *root, BinaryTreeNode<int> *u, BinaryTreeNode<int> *v) {
+  // Write your code here.
+
+  // base case
+  // the root is the first node; if it js equal to null or equal to u or v, we
+  // simple return the root
+  if(u == NULL || v == NULL){
+		return NULL;
+	}
+  if (root == NULL || root == u || root == v)
+    return root;
+  BinaryTreeNode<int> *left = findLCA(root->left, u, v);
+  BinaryTreeNode<int> *right = findLCA(root->right, u, v);
+  if (left == NULL && right == NULL)
+    return NULL;
+  if (left != NULL && right != NULL)
+    return root;
+   return left==NULL?right:left;
+}
