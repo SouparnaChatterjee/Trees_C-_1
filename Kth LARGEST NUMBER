@@ -1,0 +1,19 @@
+int inorder(TreeNode<int>* root, vector<int>& inTraversal)
+{
+    if(root==NULL)
+    return -1;
+    inorder(root->left, inTraversal);
+    inTraversal.push_back(root->data);
+    inorder(root->right, inTraversal);
+}
+int KthLargestNumber(TreeNode<int>* root, int k) 
+{
+    // Write your code here.
+    vector<int> inTraversal;
+    inorder(root, inTraversal);
+    int n=inTraversal.size();
+    if(k>n)
+    return -1;
+    else
+    return inTraversal[n-k];
+}
