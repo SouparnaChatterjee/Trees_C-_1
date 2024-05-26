@@ -3,6 +3,7 @@ TreeNode<int>* insertionInBST(TreeNode<int>* root, int val)
     // Write your code here.
     if(root==NULL)
     {
+//if it is null, we insert
         TreeNode<int>* root = new TreeNode<int> (val);
         return root;
     }
