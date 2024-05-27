@@ -1,0 +1,20 @@
+int helper(BinaryTreeNode* root, int &steps)
+//&steps :)  while declaring anything & or *
+{
+  if (root == NULL) 
+    return 0;
+  int leftC=helper(root->left,steps);
+  int rightC=helper(root->right,steps);
+  steps+=abs(leftC)+abs(rightC);
+  return (leftC+rightC+root->data-1);
+}
+
+int distributeCoins(BinaryTreeNode* root)
+{
+	// Write your code here.
+    //steps has to be a parameter of that ;ie common and defined either as a parameter or a value has to be assigned
+    //here, initialised as 0
+    int steps=0;
+    helper(root, steps);
+    return steps;
+}
