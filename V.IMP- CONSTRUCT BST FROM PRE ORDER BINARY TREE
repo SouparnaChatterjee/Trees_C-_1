@@ -1,0 +1,31 @@
+#include<climits>
+TreeNode *util(vector<int> &preOrder, int &preIndex, int startRange, int endRange)
+{
+    //return null ie base case; pass current node; if within cond; increment; now check size; left; check size; right
+    if(preIndex>=preOrder.size())
+    {
+        return NULL;
+    }
+    int currNode=preOrder[preIndex];
+    if(currNode>startRange && currNode<endRange)
+    {
+        TreeNode *root=new TreeNode(currNode);
+        preIndex+=1;
+        if(preIndex<preOrder.size())
+        {
+            root->left=util(preOrder, preIndex, startRange, currNode);
+        }
+         if(preIndex<preOrder.size())
+        {
+            root->right=util(preOrder, preIndex, currNode, endRange);
+        }
+        return root;
+    }
+    return NULL;
+}
+TreeNode *preOrderTree(vector<int> &preOrder)
+{
+    // Write your code here.
+    int preIndex=0;
+    return util(preOrder, preIndex, INT_MIN, INT_MAX);
+}
